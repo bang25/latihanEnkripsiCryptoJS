@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt & Decrypt Password</title>
+    <!-- CDN untuk library CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+</head>
+<body>
+    <!-- Membuat Input dan Output Untuk Enkripsi Password -->
+    <form onsubmit="event.preventDefault(); enkrip()">
+        <label>Enkripsi Password</label>
+        <input id="enkripsi-password" type="text" required>
+        <button>Enter</button>
+    </form>
+    <br />
+    <div class="hasil-enkripsi">
+        <p>Hasil Enkripsi :</p>
+    </div>
+
+    
+    <!-- Membuat Enkripsi untuk Input dan Output Dekripsi Password -->
+    <br />
+    <form onsubmit="event.preventDefault(); dekrip()">
+        <label>Dekripsi Password</label>
+        <input id="dekripsi-password" type="text" required>
+        <button>Enter</button>
+    </form>
+    <br />
+    <div class="hasil-dekripsi">
+        <p>Hasil Deskipsi :</p>
+    </div>
+
+    <script>
+        const enkripsiPassword = document.getElementById('enkripsi-password')
+        const dekripsiPassword = document.getElementById('dekripsi-password')
+        const hasilEnkripsi = document.querySelector('.hasil-enkripsi')
+        const hasilDeskripsi = document.querySelector('.hasil-dekripsi')
+
+        // Fungsi untuk mengenkripsi
+        function enkrip(){
+            const Enkripsi = CryptoJS.AES.encrypt(enkripsiPassword.value, "PASSWORD")
+            Enkripsi.toString() //Kita convert hasil enkripsinya kedalam string supaya bisa ditampilkan dilayar
+            const hasil = document.createElement("P")
+            hasil.innerHTML = Enkripsi
+            hasilEnkripsi.appendChild(hasil)
+            enkripsiPassword.value = ''
+        }
+
+        // Fungsi untuk mendekripsi
+        function dekrip(){
+            const Dekripsi = CryptoJS.AES.decrypt(dekripsiPassword.value, "PASSWORD")
+            Dekripsi.toString(CryptoJS.enc.Utf8) //Kita convert hasil deskripsinya supaya bisa ditampilkan dilayar, kita juga menambahkan parameter kedalam toString supaya nilai yang dihasilkan bisa dibaca.
+            const hasil = document.createElement("P")
+            hasil.innerHTML = Dekripsi
+            hasilDeskripsi.appendChild(hasil)
+            dekripsiPassword.value = ''
+        }
+
+    </script>
+</body>
+</html>

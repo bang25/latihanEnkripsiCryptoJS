@@ -40,8 +40,8 @@
 
         // Fungsi untuk mengenkripsi
         function enkrip(){
-            const Enkripsi = CryptoJS.AES.encrypt(enkripsiPassword.value, "PASSWORD")
-            Enkripsi.toString() //Kita convert hasil enkripsinya kedalam string supaya bisa ditampilkan dilayar
+            let Enkripsi = CryptoJS.AES.encrypt(enkripsiPassword.value, "PASSWORD")
+            Enkripsi = Enkripsi.toString() //Kita convert hasil enkripsinya kedalam string supaya bisa ditampilkan dilayar
             const hasil = document.createElement("P")
             hasil.innerHTML = Enkripsi
             hasilEnkripsi.appendChild(hasil)
@@ -50,8 +50,8 @@
 
         // Fungsi untuk mendekripsi
         function dekrip(){
-            const Dekripsi = CryptoJS.AES.decrypt(dekripsiPassword.value, "PASSWORD")
-            Dekripsi.toString(CryptoJS.enc.Utf8) //Kita convert hasil deskripsinya supaya bisa ditampilkan dilayar, kita juga menambahkan parameter kedalam toString supaya nilai yang dihasilkan bisa dibaca.
+            let Dekripsi = CryptoJS.AES.decrypt(dekripsiPassword.value, "PASSWORD")
+            Dekripsi = Dekripsi.toString(CryptoJS.enc.Utf8) //Kita convert hasil deskripsinya supaya bisa ditampilkan dilayar, kita juga menambahkan parameter kedalam toString supaya nilai yang dihasilkan bisa dibaca.
             const hasil = document.createElement("P")
             hasil.innerHTML = Dekripsi
             hasilDeskripsi.appendChild(hasil)
